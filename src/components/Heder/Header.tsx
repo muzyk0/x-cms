@@ -5,9 +5,16 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
+import {useStyles} from '../../App';
 
-export const Header = ({classes, open, handleDrawerOpen, handleDrawerClose, ...props}: any) => {
+type PropsType = {
+    open: boolean
+    handleDrawerOpen: () => void
+    handleDrawerClose: () => void
+}
 
+export const Header = ({open, handleDrawerOpen, handleDrawerClose, ...restProps}: PropsType) => {
+    const classes = useStyles();
     return (
         <AppBar
             position="fixed"

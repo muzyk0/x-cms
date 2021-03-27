@@ -13,12 +13,19 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 import {useTheme} from '@material-ui/core/styles';
 import {NavLink} from 'react-router-dom';
-import {AccountBox, Home, Link, Telegram} from '@material-ui/icons';
+import {AccountBox, Home, Link, People, Telegram} from '@material-ui/icons';
+import {useStyles} from '../../App';
 
 export const PATH = {
     HOMEPAGE: '/',
     PROFILE: '/profile',
     DIALOGS: '/dialogs',
+    USERS: '/users',
+}
+type PropsType = {
+    open: boolean
+    handleDrawerOpen: () => void
+    handleDrawerClose: () => void
 }
 type linksType = {
     path: string
@@ -26,12 +33,13 @@ type linksType = {
     icon: string
 }
 
-export const Sidebar = (props: any) => {
-
+export const Sidebar = (props: PropsType) => {
+    const classes = useStyles();
     const links: linksType[] = [
         {path: PATH.HOMEPAGE, link: 'Home Page', icon: 'Home'},
         {path: PATH.PROFILE, link: 'Profile', icon: 'AccountBox'},
         {path: PATH.DIALOGS, link: 'Dialogs', icon: 'Telegram'},
+        {path: PATH.USERS, link: 'Users', icon: 'People'},
     ]
 
     const iconList = (icon: string) => {
@@ -42,6 +50,8 @@ export const Sidebar = (props: any) => {
                 return <AccountBox/>
             case 'Telegram':
                 return <Telegram/>
+            case 'People':
+                return <People/>
             default:
                 return <Link/>
         }
@@ -63,18 +73,18 @@ export const Sidebar = (props: any) => {
     return (
         <Drawer
             variant="permanent"
-            className={clsx(props.classes.drawer, {
-                [props.classes.drawerOpen]: props.open,
-                [props.classes.drawerClose]: !props.open,
+            className={clsx(classes.drawer, {
+                [classes.drawerOpen]: props.open,
+                [classes.drawerClose]: !props.open,
             })}
             classes={{
                 paper: clsx({
-                    [props.classes.drawerOpen]: props.open,
-                    [props.classes.drawerClose]: !props.open,
+                    [classes.drawerOpen]: props.open,
+                    [classes.drawerClose]: !props.open,
                 }),
             }}
         >
-            <div className={props.classes.toolbar}>
+            <div className={classes.toolbar}>
                 <IconButton onClick={props.handleDrawerClose}>
                     {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
                 </IconButton>

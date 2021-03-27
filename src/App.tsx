@@ -2,12 +2,14 @@ import React, {useEffect} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {Sidebar} from './components/Sidebar/Sidebar';
-import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
+import {HashRouter as Router, Route, Switch,} from 'react-router-dom';
 import {Home} from './components/Home/Home';
 import {Profile} from './components/Profile/Profile';
 import {Header} from './components/Heder/Header';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {Grid} from '@material-ui/core';
+import {Error404} from './components/Error404';
+import {UsersContainer} from './components/Users/UsersContainer';
 
 const drawerWidth = 240;
 
@@ -104,31 +106,31 @@ export default function MiniDrawer() {
             <div className={classes.root}>
                 <CssBaseline/>
                 <Header
-                    classes={classes}
                     open={open}
                     handleDrawerOpen={handleDrawerOpen}
                     handleDrawerClose={handleDrawerClose}
                 />
                 <Sidebar
-                    classes={classes}
                     open={open}
                     handleDrawerOpen={handleDrawerOpen}
                     handleDrawerClose={handleDrawerClose}
                 />
-                    <Grid container>
-                        <main className={classes.content}>
-                            <div className={classes.toolbar}/>
-                            <Switch>
+                <Grid container>
+                    <main className={classes.content}>
+                        <div className={classes.toolbar}/>
+                        <Switch>
 
-                                <Route exact path="/" render={() => <Home/>}/>
-                                <Route path='/profile' render={() => <Profile/>}/>
-                                <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                                {/*у этого роута нет пути, он отрисуется если пользователь захочет попасть на несуществующую страницу*/}
-                                {/*<Route render={() => <Error404/>}/>*/}
+                            <Route exact path="/" render={() => <Home/>}/>
+                            <Route path='/profile' render={() => <Profile/>}/>
+                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                            <Route path='/users' render={() => <UsersContainer/>}/>
 
-                            </Switch>
-                        </main>
-                    </Grid>
+                            {/*у этого роута нет пути, он отрисуется если пользователь захочет попасть на несуществующую страницу*/}
+                            <Route render={() => <Error404/>}/>
+
+                        </Switch>
+                    </main>
+                </Grid>
             </div>
         </Router>
     );

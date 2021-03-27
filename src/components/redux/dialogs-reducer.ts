@@ -1,4 +1,5 @@
 export const SEND_MESSAGE = 'SEND-MESSAGE'
+export const DELETE_DIALOG = 'DELETE-DIALOG'
 
 export type MessageType = {
     id: number
@@ -26,9 +27,16 @@ const initialState = {
 export type DialogsInitialStateType = typeof initialState
 
 type ActionsType = ReturnType<typeof sendMessageAC>
+    | ReturnType<typeof deleteDialogAC>
 
 export const sendMessageAC = (message: string) => {
-    return {type: SEND_MESSAGE, message: message
+    return {
+        type: SEND_MESSAGE, message: message
+    } as const
+}
+export const deleteDialogAC = (dialogID: number) => {
+    return {
+        type: DELETE_DIALOG, dialogID
     } as const
 }
 
@@ -44,6 +52,8 @@ export const dialogsReducer = (state: DialogsInitialStateType = initialState, ac
                 ...state,
                 messages: [...state.messages, newMessage]
             }
+        case 'DELETE-DIALOG':
+            return {...state, dialogs: state.dialogs.filter(dialog => dialog.id !== action.dialogID)}
         default:
             return state
     }

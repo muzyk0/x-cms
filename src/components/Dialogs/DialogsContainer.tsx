@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {AppStateType} from '../redux/redux-store';
-import {DialogsInitialStateType, sendMessageAC} from '../redux/dialogs-reducer';
+import {deleteDialogAC, DialogsInitialStateType, dialogsReducer, sendMessageAC} from '../redux/dialogs-reducer';
 import {Dispatch} from 'redux';
 import {Dialogs} from './Dialogs';
 
@@ -9,6 +9,7 @@ type MapStateToPropsType = {
 }
 type MapDispatchToPropsType = {
     onSendMessage: (message: string) => void
+    onDeleteDialog: (dialogID: number) => void
 }
 
 export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -23,7 +24,11 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         onSendMessage(message: string) {
             dispatch(sendMessageAC(message))
 
-        }
+        },
+        onDeleteDialog(dialogID: number) {
+            dispatch(deleteDialogAC(dialogID))
+
+        },
     }
 }
 
