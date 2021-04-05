@@ -1,4 +1,4 @@
-import {MessageType} from '../redux/dialogs-reducer';
+import {MessageType} from '../../redux/dialogs-reducer';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {IconButton, Paper, TextField} from '@material-ui/core';

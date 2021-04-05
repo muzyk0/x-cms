@@ -1,6 +1,6 @@
 import React from 'react';
 import {UsersPropsType} from './UsersContainer';
-import {Avatar, Button, Grid, ListItemIcon, ListItemText, Paper, Typography} from '@material-ui/core';
+import {Avatar, Button, Grid, ListItemIcon, Paper, Typography} from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import {BreadcrumbsComponent} from '../Dialogs/Dialogs';
 
